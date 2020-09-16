@@ -7,6 +7,7 @@ const {
   createMessage,
   getSingleMessage,
   editMessage,
+  delMessage,
 } = require("../controllers/message");
 
 //Routes
@@ -22,5 +23,8 @@ router.get("/messages/:messageId", getSingleMessage);
 
 /* ------------Editing Single Message {PUT ROUTE} {PRIVATE}------------ */
 router.put("/messages/:messageId", auth, editMessage);
+
+/* ------------DELETE Single Message {DELETE ROUTE} {PRIVATE}------------ */
+router.delete("/messages/:messageId", auth, delMessage);
 //Export
 module.exports = router;

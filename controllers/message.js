@@ -69,3 +69,21 @@ exports.editMessage = async (req, res) => {
     res.status(400).json(error);
   }
 };
+
+///Deleting Single Message
+exports.delMessage = async (req, res) => {
+  try {
+    const message = await Message.findById(req.params.messageId);
+    if (!message) {
+      return res.status(400).json({ error: "No message found!" });
+    }
+    if (message.user.toString() !== req.user._id) {
+      return res.status(401).json({ error: "UnAuthorized" });
+    }
+    message.remove();
+    res.status(200).json({ msg: "Message has been deleted!" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error);
+  }
+};
