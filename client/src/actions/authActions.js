@@ -15,6 +15,7 @@ export const userLodaing = () => ({
   type: USER_LOADING,
 });
 
+////
 export const loadUser = () => (dispatch, getState) => {
   //User Loading
   dispatch(userLodaing());
@@ -50,6 +51,7 @@ export const tokenConfig = (getState) => {
   return config;
 };
 
+///Register Action
 export const register = ({ firstname, lastname, email, password }) => (
   dispatch
 ) => {
@@ -77,6 +79,34 @@ export const register = ({ firstname, lastname, email, password }) => (
       toastr.error(error.response.data.error);
       dispatch({
         type: REGISTER_FAIL,
+      });
+    });
+};
+
+//Log in Action
+export const login = ({ email, password }) => (dispatch) => {
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+  const body = { email, password };
+  axios
+    .post("/api/signin", body, config)
+    .then((res) => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(loadUser());
+      toastr.success("Welcome Back!", "You have successfully logged in");
+    })
+    .catch((error) => {
+      dispatch(
+        returnErrors(error.response.data, error.response.status, "LOGIN_FAIL")
+      );
+      dispatch({
+        type: LOGIN_FAIL,
       });
     });
 };
