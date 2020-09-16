@@ -108,3 +108,11 @@ export const login = ({ email, password }) => (dispatch) => {
       });
     });
 };
+
+// Logout User
+export const logout = () => {
+  toastr.success("See you later", "You have successfully logged out");
+  return {
+    type: LOGOUT_SUCCESS,
+  };
+};
