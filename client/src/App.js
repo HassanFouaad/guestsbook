@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import store from "./store";
 import { Provider } from "react-redux";
 import ReduxToastr from "react-redux-toastr";
@@ -18,6 +19,11 @@ function App() {
         progressBar
         closeOnToastrClick
       ></ReduxToastr>
+      <BrowserRouter>
+        <Switch>
+          <Route></Route>
+        </Switch>
+      </BrowserRouter>
     </Provider>
   );
 }
