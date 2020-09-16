@@ -5,7 +5,7 @@ const Message = require("../models/Message");
 exports.getMessages = async (req, res) => {
   try {
     const messages = await Message.find().sort({ createdAt: -1 });
-    res.json(messages);
+    res.status(200).json(messages);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
