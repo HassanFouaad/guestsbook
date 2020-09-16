@@ -14,3 +14,20 @@ import {
 export const userLodaing = () => ({
   type: USER_LOADING,
 });
+
+export const loadUser = () => (dispatch, getState) => {
+  //User Loading
+  dispatch(userLodaing());
+
+  if (typeof window !== undefined && localStorage.getItem("token")) {
+    const token = localStorage.getItem("token");
+    return dispatch({
+      type: USER_LOADED,
+      payload: token,
+    });
+  } else {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
