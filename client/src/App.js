@@ -6,7 +6,7 @@ import ReduxToastr from "react-redux-toastr";
 import "./App.css";
 import Home from "./Pages/Home";
 import { loadUser } from "./actions/authActions";
-import { Navbar } from "./Components/Navbar/Navbar";
+import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
   useEffect(() => {

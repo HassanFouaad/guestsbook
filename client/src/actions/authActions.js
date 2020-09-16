@@ -23,7 +23,7 @@ export const loadUser = () => (dispatch, getState) => {
     const token = localStorage.getItem("token");
     return dispatch({
       type: USER_LOADED,
-      payload: token,
+      payload: JSON.parse(token),
     });
   } else {
     dispatch({

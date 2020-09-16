@@ -20,10 +20,7 @@ export function Navbar({ auth, history }) {
       <NavItem>
         <Link
           to={() => {
-            return auth &&
-              auth.isAuthenticated &&
-              auth.user &&
-              auth.user.role === 1
+            return auth && auth.isAuthenticated && auth.user
               ? `/instructor/dashboard`
               : "/student/dashboard";
           }}
@@ -58,10 +55,12 @@ export function Navbar({ auth, history }) {
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <Link to="/courses" className="nav-link">
-                  Explore
+                  Home
                 </Link>
               </NavItem>
-              {auth && auth.isAuthenticated ? authLinks : guestLinks}
+              {auth && auth.isAuthenticated && auth.user
+                ? authLinks
+                : guestLinks}
             </Nav>
           </Collapse>
         </div>
