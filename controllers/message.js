@@ -2,7 +2,11 @@ const Message = require("../models/Message");
 ////Fetching All Messages
 exports.getMessages = async (req, res) => {
   try {
-    const messages = await Message.find().sort({ createdAt: -1 });
+    const messages = await Message.find()
+      .sort({ createdAt: -1 })
+      .populate("user", "firstname lastname _id email")
+      .populate("replies")
+      .populate("replies.user", "firstname lastname _id email");
     res.status(200).json(messages);
   } catch (err) {
     console.error(err.message);

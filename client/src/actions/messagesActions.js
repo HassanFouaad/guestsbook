@@ -36,10 +36,10 @@ export const getMessages = () => (dispatch) => {
 };
 
 ///Adding Message
-export const addMessage = (title, text) => async (dispatch, getState) => {
+export const addMessage = (subject, text) => async (dispatch, getState) => {
   dispatch({ type: ADD_MESSAGE_LOADING });
   try {
-    const body = { title, text };
+    const body = { subject, text };
     let res = await axios.post(`/api/messages`, body, tokenConfig(getState));
     dispatch({
       type: ADD_MESSAGE,

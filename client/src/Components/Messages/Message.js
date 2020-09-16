@@ -6,14 +6,12 @@ export default function Message({ message }) {
     <div className="ui comments" key={message._id}>
       <div className="comment">
         <a className="avatar">
-            <img src='https://react.semantic-ui.com/images/avatar/small/elliot.jpg'/>
+          <img src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg" />
         </a>
         <div className="content">
           <a className="author">{`${message.user.firstname} ${message.user.lastname}`}</a>
           <div className="metadata">
-            <span className="date">
-              {moment(message.createdAt).startOf("hour").fromNow()}
-            </span>
+            <span className="date">{moment(message.createdAt).calendar()}</span>
           </div>
           <div className="text">
             <p>{message.text}</p>
