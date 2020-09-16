@@ -31,3 +31,21 @@ export const loadUser = () => (dispatch, getState) => {
     });
   }
 };
+
+export const tokenConfig = (getState) => {
+  //Get token from Local Storage
+  let token = getState().auth.token;
+  //headers
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+
+  //If token , add to headers
+
+  if (token) {
+    config.headers["Authorization"] = token;
+  }
+  return config;
+};

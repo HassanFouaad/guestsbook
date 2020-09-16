@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import store from "./store";
 import { Provider } from "react-redux";
 import ReduxToastr from "react-redux-toastr";
 import "./App.css";
 import Home from "./Pages/Home";
+import { loadUser } from "./actions/authActions";
 
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Provider store={store}>
       {/*       <ReduxToastr
