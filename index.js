@@ -5,6 +5,8 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const app = express();
 
+///Connect to database
+require("./config");
 //App MiddleWare
 app.use(helmet());
 app.use(express.json());
