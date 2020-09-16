@@ -1,7 +1,6 @@
 import {
   MESSAGES_FAILED,
   MESSAGES_LOADED,
-  GET_MESSAGES,
   MESSAGES_LOADING,
 } from "../actions/types";
 const inintialState = {
