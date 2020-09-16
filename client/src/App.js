@@ -14,7 +14,7 @@ function App() {
 
   return (
     <Provider store={store}>
-            <ReduxToastr
+      <ReduxToastr
         timeOut={4000}
         newestOnTop={false}
         preventDuplicates

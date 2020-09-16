@@ -1,38 +1,85 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap&family=Cairo");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap");
+:root {
+  --primaryColor: #020031;
+  --primaryRGBA: rgba(0, 0, 0, 0.3);
+  --hoverColor: #f6783a;
+  --mainGrey: #fafafa;
+  --darkGrey: #5f5e5e;
+  --mainWhite: #ffff;
+  --mainBlack: #2222;
+
+  --mainTransition: all 0.3s ease-in-out;
+  --mainSpacing: 0.3em;
+}
+.text-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  letter-spacing: var(--mainSpacing);
+  text-transform: capitalize;
+}
+.text-main {
+  color: var(--primaryColor);
+}
+body {
+  font-family: "Open Sans", sans-serif !important;
+  background: var(--mainGrey) !important;
+}
+.nav-link:hover {
+  background: var(--hoverColor) !important;
+}
+.main-link {
+  padding: 0.5rem 1rem;
+  background: var(--primaryColor);
+  color: var(--mainWhite);
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: var(--mainSpacing);
+  outline: 2px solid var(--primaryColor);
+  outline-offset: 4px;
+  border: none;
+
+  transition: var(--mainTransition);
+}
+.main-link:hover {
+  background: var(--darkGrey);
+  text-decoration: none;
+  color: var(--primaryColor);
+  outline-color: var(--darkGrey);
+}
+.site-btn {
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  background: #f6783a;
+  color: #fff;
+  padding: 18px 30px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+  border-radius: 50px;
   text-align: center;
+  border: none;
+  cursor: pointer;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.loader:empty {
+  position: absolute;
+  top: calc(50% - 4em);
+  left: calc(50% - 3em);
+  width: 6em;
+  height: 6em;
+  border: 1.1em solid var(--primaryColor);
+  border-left: 1.1em solid var(--hoverColor);
+  border-radius: 50%;
+  animation: load8 1.1s infinite linear;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
+@keyframes load8 {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
 }
