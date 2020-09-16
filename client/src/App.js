@@ -6,6 +6,7 @@ import ReduxToastr from "react-redux-toastr";
 import "./App.css";
 import Home from "./Pages/Home";
 import { loadUser } from "./actions/authActions";
+import { Navbar } from "./Components/Navbar/Navbar";
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
         closeOnToastrClick
       ></ReduxToastr>
       <BrowserRouter>
+        <Navbar></Navbar>
         <Switch>
           <Route exact path="/" component={Home} />
         </Switch>

@@ -23,13 +23,10 @@ const SignUp = ({ history, isAuthenticated, register }) => {
   const [modal, setModal] = useState(false);
 
   const handleToggle = useCallback(() => {
-    // Clear errors
-    clearErrors();
     setModal(!modal);
   }, [modal]);
 
   const onChange = (e) => {
-    clearErrors();
     e.preventDefault();
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -54,7 +51,7 @@ const SignUp = ({ history, isAuthenticated, register }) => {
         handleToggle();
       }
     }
-  }, [error, handleToggle, isAuthenticated, modal]);
+  }, [handleToggle, isAuthenticated, modal]);
 
   const { firstname, lastname, email, password, password2 } = formData;
   return (
@@ -125,7 +122,6 @@ const SignUp = ({ history, isAuthenticated, register }) => {
                 Join
               </Button>
             </FormGroup>
-            <ToastsContainer store={ToastsStore}></ToastsContainer>
           </Form>
         </ModalBody>
       </Modal>
