@@ -16,7 +16,16 @@ const userSignUpValidator = () => {
       .withMessage("Password must contain at least 6 characters"),
   ];
 };
-
+const userSigninValidator = () => {
+  return [
+    check("email", "username is required")
+      .notEmpty()
+      .withMessage("Please Enter your username"),
+    check("password", "Password is required")
+      .notEmpty()
+      .withMessage("Please Enter Password"),
+  ];
+};
 const validate = (req, res, next) => {
   const errorFormatter = ({ location, msg, param, value, nestedErrors }) => {
     // Build your resulting errors however you want! String, object, whatever - it works!
@@ -32,5 +41,6 @@ const validate = (req, res, next) => {
 };
 module.exports = {
   userSignUpValidator,
+  userSigninValidator,
   validate,
 };
