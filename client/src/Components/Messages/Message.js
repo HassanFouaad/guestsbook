@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import "./message.css";
 import moment from "moment";
-import { Form, Label, Input, FormGroup } from "reactstrap";
+import { Form, Input, FormGroup } from "reactstrap";
 import { connect } from "react-redux";
 import { delMessage, addReply } from "../../actions/messagesActions";
 function Message({ message, auth, delMessage, addReply }) {
@@ -12,6 +12,7 @@ function Message({ message, auth, delMessage, addReply }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     addReply(message._id, text);
+    setValues({ text: "" });
   };
 
   const handleChange = (name) => (event) => {
@@ -68,17 +69,36 @@ function Message({ message, auth, delMessage, addReply }) {
           ))}
         </div>
         <div className="comments">
-          <Form>
-            <FormGroup>
-              <Input
-                type="text"
-                placeholder="Add a reply"
-                className="form-control"
-                value={text}
-                onChange={handleChange("text")}
-              ></Input>
-            </FormGroup>
-          </Form>
+          <div className="comment">
+            <a className="avatar">
+              <img src="https://react.semantic-ui.com/images/avatar/small/matt.jpg" />
+            </a>
+            <div className="content">
+              <a className="author">
+                {auth && auth.isAuthenticated ? (
+                  <Fragment>{`${auth.user.firstname} ${auth.user.lastname}`}</Fragment>
+                ) : (
+                  <Fragment>Guest</Fragment>
+                )}
+              </a>
+              <div className="metadata">
+                <span className="date">Now</span>
+              </div>
+              <div className="text">
+                <Form onSubmit={handleSubmit}>
+                  <FormGroup>
+                    <Input
+                      type="text"
+                      placeholder="Add a reply"
+                      className="form-control"
+                      value={text}
+                      onChange={handleChange("text")}
+                    ></Input>
+                  </FormGroup>
+                </Form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <hr></hr>

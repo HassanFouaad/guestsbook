@@ -92,11 +92,11 @@ export const addReply = (messageId, text) => async (dispatch, getState) => {
       type: ADD_REPLY,
       payload: res.data,
     });
-    toastr.success("", `You have successfully deleted a message`);
+    toastr.success("", `You have successfully added a reply`);
     dispatch(getMessages());
   } catch (error) {
     console.log(error);
-    toastr.error(error.response.data.error);
+    toastr.error("Please Log in to Reply");
     dispatch({
       type: ADD_MESSAGE_FAILED,
     });
