@@ -27,3 +27,17 @@ exports.createMessage = async (req, res) => {
     res.json({ error: error });
   }
 };
+
+///Fetching Signle Message
+exports.getSingleMessage = async (req, res) => {
+  try {
+    const message = await Message.findById(req.params.messageId);
+    if (!message) {
+      return res.status(404).json({ error: "No Messages Found!" });
+    }
+    res.status(200).json(message);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ error: "No Messages Found!" });
+  }
+};
