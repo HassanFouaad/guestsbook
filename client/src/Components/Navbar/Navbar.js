@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import RegisterModal from "../../modals/Signup";
 import { Link } from "react-router-dom";
 import Login from "../../modals/Login";
+import Logout from "../../modals/Logout";
 
 export function Navbar({ auth, history }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +30,9 @@ export function Navbar({ auth, history }) {
         >
           Dashboard
         </Link>
+      </NavItem>
+      <NavItem>
+        <Logout></Logout>
       </NavItem>
     </Fragment>
   );
