@@ -49,3 +49,34 @@ export const tokenConfig = (getState) => {
   }
   return config;
 };
+
+export const register = ({ firstname, lastname, email, password }) => (
+  dispatch
+) => {
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+
+  const body = {
+    firstname,
+    lastname,
+    email,
+    password,
+  };
+  axios
+    .post("/api/signup", body, config)
+    .then((res) =>
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((error) => {
+      toastr.error(error.response.data.error);
+      dispatch({
+        type: REGISTER_FAIL,
+      });
+    });
+};
