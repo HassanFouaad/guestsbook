@@ -22,8 +22,9 @@ exports.createMessage = async (req, res) => {
       subject: req.body.subject,
       user: req.user._id,
     });
-    const message = await newMessage.save();
-    res.status(200).json(message);
+    await newMessage.populate("user").populate("replies").execPopulate();
+    await newMessage.save();
+    res.status(200).json(newMessage);
   } catch (error) {
     console.error(error);
     res.json({ error: error });

@@ -5,8 +5,12 @@ import NewMessage from "../Components/Messages/newMessage";
 
 function Home({ messages }) {
   return (
-    <div className="container">
-      <NewMessage></NewMessage>
+    <div className="container justify-contect-center">
+      <div className="row justify-content-center">
+        <div className="col-md-4 col-sm my-4">
+          <NewMessage></NewMessage>
+        </div>
+      </div>
       {messages &&
         messages.map((message, i) => <Message message={message}></Message>)}
     </div>

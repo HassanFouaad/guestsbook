@@ -8,6 +8,7 @@ import {
   MESSAGES_LOADED,
   MESSAGES_LOADING,
   DELETE_MESSAGE,
+  ADD_REPLY,
 } from "../actions/types";
 import { tokenConfig } from "./authActions";
 export const getMessages = () => (dispatch) => {
@@ -65,6 +66,30 @@ export const delMessage = (messageId) => async (dispatch, getState) => {
     );
     dispatch({
       type: DELETE_MESSAGE,
+      payload: res.data,
+    });
+    toastr.success("", `You have successfully deleted a message`);
+    dispatch(getMessages());
+  } catch (error) {
+    console.log(error);
+    toastr.error(error.response.data.error);
+    dispatch({
+      type: ADD_MESSAGE_FAILED,
+    });
+  }
+};
+
+export const addReply = (messageId, text) => async (dispatch, getState) => {
+  dispatch({ type: ADD_MESSAGE_LOADING });
+  try {
+    const body = { text };
+    let res = await axios.post(
+      `/api/messages/${messageId}`,
+      body,
+      tokenConfig(getState)
+    );
+    dispatch({
+      type: ADD_REPLY,
       payload: res.data,
     });
     toastr.success("", `You have successfully deleted a message`);

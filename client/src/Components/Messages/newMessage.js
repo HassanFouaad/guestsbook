@@ -26,8 +26,8 @@ const NewMessage = ({ loading, error, addMessage }) => {
     <Form onSubmit={handleSubmit}>
       {loading && <div className="alert">Loading...</div>}
       <FormGroup>
-        <Label className="text-muted">Subject</Label>
         <Input
+          placeholder="Title"
           type="text"
           className="form-control"
           value={subject}
@@ -35,8 +35,8 @@ const NewMessage = ({ loading, error, addMessage }) => {
         ></Input>
       </FormGroup>
       <FormGroup>
-        <Label className="text-muted">Text</Label>
         <Input
+          placeholder="Message Text"
           type="textarea"
           className="form-control"
           value={text}

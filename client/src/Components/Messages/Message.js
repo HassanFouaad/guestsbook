@@ -1,9 +1,25 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import "./message.css";
 import moment from "moment";
+import { Form, Label, Input, FormGroup } from "reactstrap";
 import { connect } from "react-redux";
-import { delMessage } from "../../actions/messagesActions";
-function Message({ message, auth, delMessage }) {
+import { delMessage, addReply } from "../../actions/messagesActions";
+function Message({ message, auth, delMessage, addReply }) {
+  const [values, setValues] = useState({
+    text: "",
+  });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addReply(message._id, text);
+  };
+
+  const handleChange = (name) => (event) => {
+    event.preventDefault();
+    const value = event.target.value;
+    setValues({ ...values, [name]: value });
+  };
+  const { text } = values;
   return (
     <div className="ui comments" key={message._id}>
       <div className="comment">
@@ -11,7 +27,10 @@ function Message({ message, auth, delMessage }) {
           <img src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg" />
         </a>
         <div className="content">
-          <a className="author">{`${message.user.firstname} ${message.user.lastname}`}</a>
+          <span
+            className="author"
+            className="text-capitalize"
+          >{`${message.user.firstname} ${message.user.lastname}`}</span>
           <div className="metadata">
             <span className="date">{moment(message.createdAt).calendar()}</span>
             {auth &&
@@ -48,11 +67,25 @@ function Message({ message, auth, delMessage }) {
             </div>
           ))}
         </div>
+        <div className="comments">
+          <Form>
+            <FormGroup>
+              <Input
+                type="text"
+                placeholder="Add a reply"
+                className="form-control"
+                value={text}
+                onChange={handleChange("text")}
+              ></Input>
+            </FormGroup>
+          </Form>
+        </div>
       </div>
+      <hr></hr>
     </div>
   );
 }
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
-export default connect(mapStateToProps, { delMessage })(Message);
+export default connect(mapStateToProps, { delMessage, addReply })(Message);
