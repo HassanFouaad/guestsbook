@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
 const Message = require("../models/Message");
-
 ////Fetching All Messages
 exports.getMessages = async (req, res) => {
   try {
@@ -85,5 +83,22 @@ exports.delMessage = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
+  }
+};
+
+////Add Reply
+exports.createReply = async (req, res) => {
+  try {
+    const message = await Message.findById(req.params.messageId);
+    const newReply = {
+      text: req.body.text,
+      user: req.user._id,
+    };
+    message.replies.unshift(newReply);
+    await message.save();
+    res.json(message.replies);
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).send("Server Error");
   }
 };
