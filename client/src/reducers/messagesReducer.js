@@ -25,5 +25,7 @@ export default function (state = inintialState, action) {
       };
     case MESSAGES_FAILED:
       return { ...state, messages: [], loading: false, error: true };
+    default:
+      return state;
   }
 }
