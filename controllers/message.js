@@ -41,3 +41,31 @@ exports.getSingleMessage = async (req, res) => {
     res.status(400).json({ error: "No Messages Found!" });
   }
 };
+
+/////Updating Single Message
+exports.editMessage = async (req, res) => {
+  try {
+    const { subject, text } = req.body;
+    const message = await Message.findById(req.params.messageId);
+    if (!message) {
+      return res.status(400).json({ error: "No message found!" });
+    }
+    if (message.user.toString() !== req.user._id) {
+      return res.status(401).json({ error: "UnAuthorized" });
+    }
+    const newMessage = await Message.findByIdAndUpdate(
+      message._id,
+      {
+        $set: {
+          subject,
+          text,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(newMessage);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json(error);
+  }
+};
