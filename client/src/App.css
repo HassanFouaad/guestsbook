@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap&family=Cairo");
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap");
 :root {
-  --primaryColor: #020031;
+  --primaryColor: #f5ba13;
   --primaryRGBA: rgba(0, 0, 0, 0.3);
-  --hoverColor: #f6783a;
+  --hoverColor: black;
   --mainGrey: #fafafa;
   --darkGrey: #5f5e5e;
   --mainWhite: #ffff;

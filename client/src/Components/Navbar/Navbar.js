@@ -4,7 +4,6 @@ import {
   NavItem,
   Nav,
   NavbarToggler,
-  NavLink,
   Collapse,
   Navbar as NavbarI,
 } from "reactstrap";
@@ -20,14 +19,7 @@ export function Navbar({ auth, history }) {
   const authLinks = (
     <Fragment>
       <NavItem>
-        <Link
-          to={() => {
-            return auth && auth.isAuthenticated && auth.user
-              ? `/instructor/dashboard`
-              : "/student/dashboard";
-          }}
-          className="nav-link"
-        >
+        <Link to="/dashboard" className="nav-link">
           Dashboard
         </Link>
       </NavItem>
