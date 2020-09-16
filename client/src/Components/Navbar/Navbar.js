@@ -11,6 +11,7 @@ import {
 import { connect } from "react-redux";
 import RegisterModal from "../../modals/Signup";
 import { Link } from "react-router-dom";
+import Login from "../../modals/Login";
 
 export function Navbar({ auth, history }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +36,9 @@ export function Navbar({ auth, history }) {
     <Fragment>
       <NavItem>
         <RegisterModal />
+      </NavItem>
+      <NavItem>
+        <Login></Login>
       </NavItem>
     </Fragment>
   );

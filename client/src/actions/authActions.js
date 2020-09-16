@@ -102,9 +102,7 @@ export const login = ({ email, password }) => (dispatch) => {
       toastr.success("Welcome Back!", "You have successfully logged in");
     })
     .catch((error) => {
-      dispatch(
-        returnErrors(error.response.data, error.response.status, "LOGIN_FAIL")
-      );
+      toastr.error(error.response.data.error);
       dispatch({
         type: LOGIN_FAIL,
       });
