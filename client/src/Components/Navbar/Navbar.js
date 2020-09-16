@@ -20,11 +20,6 @@ export function Navbar({ auth, history }) {
   const authLinks = (
     <Fragment>
       <NavItem>
-        <Link to="/dashboard" className="nav-link">
-          Dashboard
-        </Link>
-      </NavItem>
-      <NavItem>
         <Logout></Logout>
       </NavItem>
     </Fragment>
@@ -52,7 +47,7 @@ export function Navbar({ auth, history }) {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Link to="/courses" className="nav-link">
+                <Link to="/" className="nav-link">
                   Home
                 </Link>
               </NavItem>
