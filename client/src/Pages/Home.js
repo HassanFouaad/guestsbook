@@ -4,10 +4,10 @@ import Message from "../Components/Messages/Message";
 
 function Home({ messages }) {
   return (
-    <Fragment>
+    <div className="container">
       {messages &&
         messages.map((message, i) => <Message message={message}></Message>)}
-    </Fragment>
+    </div>
   );
 }
 
