@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const app = express();
 
+const userRouter = require("./routes/user");
 ///Connect to database
 require("./config");
 //App MiddleWare
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(morgan("dev"));
 
 ///Define Routes
+app.use("/api", userRouter);
 app.use("/", (req, res) => {
   res.status(200).json("API RUNNING");
 });
