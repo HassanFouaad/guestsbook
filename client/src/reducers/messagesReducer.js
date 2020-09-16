@@ -7,6 +7,7 @@ import {
 const inintialState = {
   messages: [],
   loading: false,
+  error: true,
 };
 export default function (state = inintialState, action) {
   switch (action.type) {
@@ -15,5 +16,14 @@ export default function (state = inintialState, action) {
         ...state,
         loading: true,
       };
+    case MESSAGES_LOADED:
+      return {
+        ...state,
+        messages: action.payload,
+        loading: false,
+        error: false,
+      };
+    case MESSAGES_FAILED:
+      return { ...state, messages: [], loading: false, error: true };
   }
 }
