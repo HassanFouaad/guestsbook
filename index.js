@@ -6,8 +6,11 @@ const helmet = require("helmet");
 const app = express();
 
 const userRouter = require("./routes/user");
+const messageRouter = require("./routes/message");
+
 ///Connect to database
 require("./config");
+
 //App MiddleWare
 app.use(helmet());
 app.use(express.json());
@@ -16,6 +19,7 @@ app.use(morgan("dev"));
 
 ///Define Routes
 app.use("/api", userRouter);
+app.use("/api", messageRouter);
 app.use("/", (req, res) => {
   res.status(200).json("API RUNNING");
 });
