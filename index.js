@@ -21,7 +21,7 @@ app.use(morgan("dev"));
 app.use("/api", userRouter);
 app.use("/api", messageRouter);
 app.use("/", (req, res) => {
-  res.status(200).json("API RUNNING");
+  res.status(404).json("API RUNNING");
 });
 
 //Server Listening
