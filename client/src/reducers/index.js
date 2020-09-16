@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
-
-export default combineReducers({ auth: authReducer });
+import { reducer as toastrReducer } from "react-redux-toastr";
+export default combineReducers({ auth: authReducer, toastr: toastrReducer });
