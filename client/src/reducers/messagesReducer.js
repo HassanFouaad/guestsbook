@@ -6,6 +6,7 @@ import {
   ADD_MESSAGE_FAILED,
   ADD_MESSAGE_SUCCESS,
   ADD_MESSAGE_LOADING,
+  DELETE_MESSAGE,
 } from "../actions/types";
 const inintialState = {
   messages: [],
@@ -41,6 +42,10 @@ export default function (state = inintialState, action) {
       return {
         ...state,
         loading: false,
+      };
+    case DELETE_MESSAGE:
+      return {
+        ...state,
       };
     default:
       return state;

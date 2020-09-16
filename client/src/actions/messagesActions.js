@@ -7,6 +7,7 @@ import {
   MESSAGES_FAILED,
   MESSAGES_LOADED,
   MESSAGES_LOADING,
+  DELETE_MESSAGE,
 } from "../actions/types";
 import { tokenConfig } from "./authActions";
 export const getMessages = () => (dispatch) => {
@@ -46,6 +47,28 @@ export const addMessage = (subject, text) => async (dispatch, getState) => {
       payload: res.data,
     });
     toastr.success("", `You have successfully added a message`);
+  } catch (error) {
+    console.log(error);
+    toastr.error(error.response.data.error);
+    dispatch({
+      type: ADD_MESSAGE_FAILED,
+    });
+  }
+};
+
+export const delMessage = (messageId) => async (dispatch, getState) => {
+  dispatch({ type: ADD_MESSAGE_LOADING });
+  try {
+    let res = await axios.delete(
+      `/api/messages/${messageId}`,
+      tokenConfig(getState)
+    );
+    dispatch({
+      type: DELETE_MESSAGE,
+      payload: res.data,
+    });
+    toastr.success("", `You have successfully deleted a message`);
+    dispatch(getMessages());
   } catch (error) {
     console.log(error);
     toastr.error(error.response.data.error);
