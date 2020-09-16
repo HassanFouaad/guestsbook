@@ -4,11 +4,12 @@ import store from "./store";
 import { Provider } from "react-redux";
 import ReduxToastr from "react-redux-toastr";
 import "./App.css";
+import Home from "./Pages/Home";
 
 function App() {
   return (
     <Provider store={store}>
-      <ReduxToastr
+      {/*       <ReduxToastr
         timeOut={4000}
         newestOnTop={false}
         preventDuplicates
@@ -18,10 +19,10 @@ function App() {
         transitionOut="fadeOut"
         progressBar
         closeOnToastrClick
-      ></ReduxToastr>
+      ></ReduxToastr> */}
       <BrowserRouter>
         <Switch>
-          <Route></Route>
+          <Route exact path="/" component={Home} />
         </Switch>
       </BrowserRouter>
     </Provider>
