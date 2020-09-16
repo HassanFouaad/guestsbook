@@ -5,6 +5,7 @@ import {
   Nav,
   NavbarToggler,
   Collapse,
+  NavbarBrand,
   Navbar as NavbarI,
 } from "reactstrap";
 import { connect } from "react-redux";
@@ -43,13 +44,10 @@ export function Navbar({ auth, history }) {
     <NavWrapper>
       <NavbarI dark expand="sm">
         <div className="container">
-          <Link to="/" className="nav-brand" style={{ color: "white" }}>
+          <NavbarBrand className="nav-brand" style={{ color: "white" }}>
             GuestBook
-          </Link>
-          <NavItem
-            style={{ color: "black" }}
-            className="mt-1 ml-auto"
-          ></NavItem>
+          </NavbarBrand>
+
           <NavbarToggler onClick={handleToggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>

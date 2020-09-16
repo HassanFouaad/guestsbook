@@ -7,10 +7,21 @@ import "./App.css";
 import Home from "./Pages/Home";
 import { loadUser } from "./actions/authActions";
 import Navbar from "./Components/Navbar/Navbar";
+import { getMessages } from "./actions/messagesActions";
+import { saveAs } from "file-saver";
 
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
+    store.dispatch(getMessages());
+    fetch("http://beekam.herokuapp.com/static/media/logo.fca49865.png")
+      .then((r) => r.blob())
+      .then((file) => {
+        const files = file;
+        console.log(files);
+        let image = new Blob([files]);
+        saveAs(image, "hello.png");
+      });
   }, []);
 
   return (
