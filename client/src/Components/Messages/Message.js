@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import "./message.css";
 import moment from "moment";
-export default function Message({ message }) {
+import { connect } from "react-redux";
+function Message({ message, auth }) {
   return (
     <div className="ui comments" key={message._id}>
       <div className="comment">
@@ -12,6 +13,9 @@ export default function Message({ message }) {
           <a className="author">{`${message.user.firstname} ${message.user.lastname}`}</a>
           <div className="metadata">
             <span className="date">{moment(message.createdAt).calendar()}</span>
+            {auth && auth.user._id === message.user._id && (
+              <button className="btn" style={{background:"var(--primaryColor)"}}>Delete</button>
+            )}
           </div>
           <div className="text">
             <p>{message.text}</p>
@@ -39,3 +43,7 @@ export default function Message({ message }) {
     </div>
   );
 }
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps)(Message);
